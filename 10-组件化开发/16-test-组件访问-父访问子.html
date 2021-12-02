@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn :titlename="message"></cpn>
+        <button @click="accessSub1()">访问子组件1</button>
+        <cpn :titlename="message" ref="cpnref"></cpn>
+        <button @click="accessSub2()">访问子组件2</button>
+    </div>
+    <template id="cpn">
+        <div>
+        <div>我是子组件</div>
+        <h1>{{titlename}}</h1>
+    </div>
+    </template>
+    <script>
+        const app=new Vue({
+            el:"#app",
+            data:{
+                message:"我是子组件的标题"
+            },
+            methods:{
+                accessSub1(){
+                    console.log("accessSub1");
+                    console.log(this.$children);
+                    for(let item of this.$children)
+                    {
+                        console.log(item.msg);
+                    }
+                    console.log(this.$children[0].msg);
+                },
+                accessSub2(){
+                    console.log("accessSub2");
+                    console.log(this.$refs);
+                    console.log(this.$refs.cpnref.msg);
+                }
+            },
+            components:{
+                cpn:{
+                    template:"#cpn",
+                    data:function(){
+                        return {msg:"123"}
+                    },
+                    props:{
+                        titlename:String
+                    },
+                    methods:{
+                        showMessage(){
+                            console.log("show message test!");
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
