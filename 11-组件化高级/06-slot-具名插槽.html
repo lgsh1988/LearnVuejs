@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <a href="#" slot="btn">链接链接</a>
+        </cpn>
+        <cpn>
+            <a href="#" slot="btn">链接链接</a>
+            <button slot="list">按钮按钮</button>
+        </cpn>
+        <cpn>
+            <a href="#" slot="btn">链接链接</a>
+            <button slot="list">按钮按钮</button>
+            <ul slot="link"><li>4</li><li>5</li><li>6</li></ul>
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+        <h1>标题</h1>
+        <p>内容内容内容内容内容</p>
+        <slot name="btn"><button>按钮</button></slot>
+        <slot name="link"><a href="#">链接</a></slot>
+        <slot name="list"><ul><li>1</li><li>2</li><li>3</li></ul></slot>
+    </div>
+    </template>
+    <script>
+        const cpn={
+            template:"#cpn"
+        }
+        const vue=new Vue({
+            el:"#app",
+            components:{
+                cpn
+            }
+        })
+    </script>
+</body>
+</html>
